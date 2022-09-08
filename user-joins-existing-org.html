@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="rg1Qq4Q8KKQjohOwSeZ4jdqfvArMB8D0";;analytics.SNIPPET_VERSION="4.15.3";
+  analytics.load("rg1Qq4Q8KKQjohOwSeZ4jdqfvArMB8D0");
+  analytics.page();
+  }}();
+</script>
+<script>
+function trackUserJoinedOrg() {
+    // For demo purposes only:
+    document.getElementById("status").innerHTML = "Submitting..."
+
+
+    // This would likely be on your backend, after you generate ID for your user.
+    var userId = Math.random().toString(16).slice(2)
+    var userTraits = {
+        email: document.getElementById("email-input").value,
+        userName: document.getElementById("user-name-input").value,
+        orgId: document.getElementById("org-id-input").value,
+    }
+    analytics.identify(userId, userTraits);
+    analytics.track("User joined org", userTraits)
+
+
+    // For demo purposes only:
+    var generatedData = {...userTraits, userId}
+    setTimeout(() => {
+            document.getElementById("status").innerHTML = "Submitted"
+            document.getElementById("result").value = JSON.stringify(generatedData, null, 4);
+        }
+        , 1000);
+}
+</script>
+<body>
+
+<h1>Another User joins Organization</h1>
+<form>
+    <label for="org-id-input">Org ID:</label>
+    <input type="text" id="org-id-input"> <br>
+    <label for="user-name-input">User Name:</label>
+    <input type="text" id="user-name-input"> <br>
+    <label for="email-input">Email:</label>
+    <input type="text" id="email-input"> <br>
+    <button type="button" onclick="trackUserJoinedOrg()">Join Org</button>
+</form>
+
+<p id="status"></p>
+<textarea id="result" rows="10" cols="50"></textarea>
+</body>
+</html>
