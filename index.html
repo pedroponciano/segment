@@ -18,7 +18,8 @@ function trackNewsletterSubscribed() {
 
     var properties = {
         email: document.getElementById("email-input").value,
-        name: document.getElementById("name-input").value
+        name: document.getElementById("name-input").value,
+        phone: document.getElementById("phone-input").value
         
     }
     analytics.track("Newsletter subscribed", properties)
@@ -36,6 +37,8 @@ function trackNewsletterSubscribed() {
     <input type="text" id="name-input"> <br><br>
     <label for="email-input">Email:</label>
     <input type="text" id="email-input"> <br><br>
+    <label for="phone-input">Phone:</label>
+    <input type="text" id="phone-input"> <br><br>
     <button type="button" onclick="trackNewsletterSubscribed()">Subscribe</button>
 </form>
 <br>
